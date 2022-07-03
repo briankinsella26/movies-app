@@ -4,7 +4,7 @@ import { getUpcomingMovies } from "../api/tmdb-api";
 import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
 
 const UpcomingMoviesPage = (props) => {
-  const [movies, setMovies] = useState([])
+  const [movies, setMovies] = useState([]);
 
   useEffect(() => {
     getUpcomingMovies().then(movies => {
@@ -18,7 +18,7 @@ const UpcomingMoviesPage = (props) => {
       title='Upcoming movies'
       movies={movies}
       action={(movie) => {
-        return <AddToFavouritesIcon movie={movie} />
+        return <AddToFavouritesIcon movie={null} />
       }}
     />
   );
