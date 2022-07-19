@@ -11,6 +11,8 @@ import NavigationIcon from "@material-ui/icons/Navigation";
 import Fab from "@material-ui/core/Fab";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from '../movieReviews'
+import Grid from "@material-ui/core/Grid";
+import CastList from "../castList";
 
 const useStyles = makeStyles((theme) => ({
   chipRoot: {
@@ -40,18 +42,22 @@ const useStyles = makeStyles((theme) => ({
     top: theme.spacing(15),
     right: theme.spacing(2),
   },
+  heading: {
+    color: "#3f51b5",
+    fontWeight: "bold",
+    paddingTop: "30px"
+  },
 }));
 
-const MovieDetails = ( {movie}) => {
+const MovieDetails = ({ movie, cast }) => {
   const classes = useStyles();
-  const [drawerOpen, setDrawerOpen] = useState(false); // New
-
+  const [drawerOpen, setDrawerOpen] = useState(false); 
+  
   return (
     <>
-      <Typography variant="h5" component="h3">
+      <Typography variant="h5" component="h3" className={classes.heading}>
         Overview
       </Typography>
-
       <Typography variant="h6" component="p">
         {movie.overview}
       </Typography>
@@ -79,7 +85,15 @@ const MovieDetails = ( {movie}) => {
         <Chip label={`Released: ${movie.release_date}`} />
       </Paper>
       </div>
-      {/* New */}
+      <Typography variant="h5" component="h3" className={classes.heading}>
+        Cast
+      </Typography>
+      <Grid container>
+        <Grid item container spacing={5} style={{ paddingTop: "30px" }}>
+          <CastList cast={cast}>
+          </CastList>
+        </Grid>
+      </Grid>
       <Fab    
         color="secondary"
         variant="extended"
@@ -87,7 +101,7 @@ const MovieDetails = ( {movie}) => {
         className={classes.fab}
       >
         <NavigationIcon />
-        Reviews
+          Reviews
       </Fab>
       <Drawer anchor="top" open={drawerOpen} onClose={() => setDrawerOpen(false)}>
         <MovieReviews movie={movie} />

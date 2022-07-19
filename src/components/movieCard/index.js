@@ -27,6 +27,10 @@ export default function MovieCard({ movie, action }) {
   const classes = useStyles();
   const { favourites } = useContext(MoviesContext);
 
+  const truncateTitle = (title="", size) => {
+    return title.length > size ? title.slice(0, size - 1) + "…" : title;
+  }
+
   if (favourites.find((id) => id === movie.id)) {
     movie.favourite = true;
   } else {
@@ -46,7 +50,7 @@ export default function MovieCard({ movie, action }) {
         }
         title={
           <Typography variant="h5" component="p">
-            {movie.title}{" "}
+            {truncateTitle(movie.title!==undefined ? movie.title : movie.name, 17)}{" "}
           </Typography>
         }
       />
@@ -63,7 +67,7 @@ export default function MovieCard({ movie, action }) {
           <Grid item xs={6}>
             <Typography variant="h6" component="p">
               <CalendarIcon fontSize="small" />
-              {movie.release_date}
+              {movie.release_date!==undefined ? movie.release_date : movie.first_air_date}
             </Typography>
           </Grid>
           <Grid item xs={6}>

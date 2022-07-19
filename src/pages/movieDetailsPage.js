@@ -2,19 +2,25 @@
 import { useParams } from "react-router-dom";
 import MovieDetails from "../components/movieDetails";
 import PageTemplate from "../components/templateMoviePage";
-import { getMovie } from '../api/tmdb-api'
+import { getMovie, getCast} from '../api/tmdb-api'
 import { useQuery } from "react-query";
 import Spinner from '../components/spinner'
 
 const MovieDetailsPage = (props) => {
   const { id } = useParams();
-const { data: movie, error, isLoading, isError } = useQuery(
+
+  const { data: cast } = useQuery(
+    ["cast", { id: id }],
+    getCast
+  );
+
+  const { data: movie, error, isLoading, isError } = useQuery(
     ["movie", { id: id }],
     getMovie
   );
 
   if (isLoading) {
-    return <Spinner />;
+    return < Spinner />;
   }
 
   if (isError) {
@@ -25,7 +31,7 @@ const { data: movie, error, isLoading, isError } = useQuery(
       {movie ? (
         <>
           <PageTemplate movie={movie}>
-            <MovieDetails movie={movie} />
+            <MovieDetails movie={movie} cast={cast} />
           </PageTemplate>
         </>
       ) : (
