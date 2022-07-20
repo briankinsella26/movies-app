@@ -1,5 +1,5 @@
 
-import { useParams, useLocation } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import ActorDetails from "../components/actorDetails";
 import PageTemplate from "../components/templateActorPage";
 import { getActor, getCredits } from '../api/tmdb-api'
@@ -34,11 +34,6 @@ const ActorDetailsPage = (props) => {
   credits.cast.sort((a, b) => {
     return b.popularity - a.popularity;
   });
-
-  console.log('in actorDetailsPage')
-  console.log(credits.cast)
-  console.log(actor)
-
 
   return (
     <>
