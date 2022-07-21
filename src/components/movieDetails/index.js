@@ -11,7 +11,7 @@ import Fab from "@material-ui/core/Fab";
 import Drawer from "@material-ui/core/Drawer";
 import MovieReviews from '../movieReviews'
 import Grid from "@material-ui/core/Grid";
-import CastList from "../castList";
+import ActorList from "../actorList";
 
 const useStyles = makeStyles((theme) => ({
   chipRoot: {
@@ -89,8 +89,8 @@ const MovieDetails = ({ movie, cast }) => {
       </Typography>
       <Grid container>
         <Grid item container spacing={5} style={{ paddingTop: "30px" }}>
-          <CastList cast={cast}>
-          </CastList>
+          <ActorList actors={cast.cast}>
+          </ActorList>
         </Grid>
       </Grid>
       <Fab    

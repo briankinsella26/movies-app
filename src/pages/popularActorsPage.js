@@ -17,8 +17,10 @@ const PopularActorsPage = (props) => {
   
   const actors = data.results;
 
+  const filteredNoAdult = actors.filter(actor => actor.adult === false)
+
   return (
-    <PageTemplate actors={actors} title="Popular Actors"/>
+    <PageTemplate actors={filteredNoAdult} title="Popular Actors"/>
   );
 };
 export default PopularActorsPage;
