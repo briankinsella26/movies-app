@@ -1,16 +1,17 @@
 import React from "react";
-import MovieHeader from "../components/headerMovie";
+import MovieDetails from "../components/movieDetails";
 import SampleMovie from "./sampleDataMovie";
+import SampleCast from "./sampleDataCast";
 import { MemoryRouter } from "react-router";
 
 export default {
-  title: "Headers/ MovieHeader",
-  component: MovieHeader,
+  title: "Movie Details Page/MovieDetails",
+  component: MovieDetails,
   decorators: [
     (Story) => <MemoryRouter initialEntries={["/"]}>{Story()}</MemoryRouter>,
   ],
 };
 
-export const Basic = () => <MovieHeader movie={SampleMovie} />;
+export const Basic = () => <MovieDetails movie={SampleMovie} cast={SampleCast}/>;
 
 Basic.storyName = "Default";
