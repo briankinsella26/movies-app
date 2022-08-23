@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -11,6 +11,7 @@ import Menu from "@material-ui/core/Menu";
 import { useNavigate, NavLink } from "react-router-dom";
 import { useTheme } from "@material-ui/core/styles";
 import useMediaQuery from "@material-ui/core/useMediaQuery";
+import { AuthContext } from "../../contexts/authContext";
 
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -38,18 +39,24 @@ const SiteHeader = () => {
   const [anchorEl, setAnchorEl] = useState(null);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down("md"));
+  const { token, logout } = useContext(AuthContext);
 
   const open = Boolean(anchorEl);
+
+  const label = !token ? "Login" : "Logout";
+  const path = !token ? "/login" : "/logout";
+
   const menuOptions = [
     { label: "Home", path: "/" },
     { label: "Upcoming", path: "/movies/upcoming" },
     { label: "Favourites", path: "/movies/favourites" },
     { label: "Actors", path: "/actors/popular" },
-    { label: "MyMovie", path: "/" },
+    { label: "Fanmovie", path: "/fantasymovie" },
+    { label: label, path: path },
   ];
 
   const handleMenuSelect = (pageURL) => {
-    navigate(pageURL);
+    pageURL === "/logout" ? logout() : navigate(pageURL);
   };
 
   const handleMenu = (event) => {
@@ -113,7 +120,7 @@ const SiteHeader = () => {
                   isActive ? classes.activeLink : classes.inactiveLink
                 }
                   color="inherit"
-                  // onClick={() => handleMenuSelect(opt.path)}
+                  onClick={() => handleMenuSelect(opt.path)}
                 >
                   {opt.label}
                 </NavLink> 
