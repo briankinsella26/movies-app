@@ -1,6 +1,6 @@
 import React, { useState, createContext } from "react";
-import fakeAuth from "../fakeAuth";
 import { useLocation, useNavigate } from "react-router-dom";
+import fakeAuth from "../fakeAuth.js"
 
 export const AuthContext = createContext(null);
 
@@ -9,15 +9,34 @@ const AuthContextProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
 
+  const users = [
+    {
+      username: "user1@test.com",
+      password: "password"
+    },
+    {
+      username: "user2@test.com",
+      password: "password"
+    }
+  ];
+
   const authenticate = async (username, password) => {
     const token = await fakeAuth(username, password);
-    setToken(token);
-    const origin = location.state?.intent?.pathname || "/";
-    navigate(origin);
+    const user = users.find((user) => user.username === username);
+    if(user){
+      if(user.password === password) {
+        setToken(token);
+        const origin = location.state?.intent?.pathname || "/";
+        navigate(origin);
+      } else {
+        console.log("error with password")
+      }
+    } else {
+      console.log("error with login")
+    }
   };
   
   const logout = () => {
-    console.log("set token to null")
     setToken(null);
     navigate('/')
   };
