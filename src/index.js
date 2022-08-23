@@ -13,6 +13,10 @@ import MoviesContextProvider from "./contexts/moviesContext";
 import AddMovieReviewPage from './pages/addMovieReviewPage';
 import PopularActorsPage from './pages/popularActorsPage';
 import ActorDetailsPage from './pages/actorDetailsPage';
+import AuthProvider from "./contexts/authContext";
+import LoginPage from "./pages/loginPage"
+import FantasyMoviePage from "./pages/fantasyMoviePage"
+import ProtectedRoute from "./protectedRoute"
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -28,20 +32,24 @@ const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <SiteHeader />
-        <MoviesContextProvider>
-          <Routes>
-            <Route path="/actors/:id" element={<ActorDetailsPage/>} />
-            <Route path="/actors/popular" element={<PopularActorsPage/>}/>
-            <Route path="/movies/favourites" element={<FavouriteMoviesPage/>}/>
-            <Route path="/movies/upcoming" element={<UpcomingMoviesPage/>}/>
-            <Route path="/movies/:id" element={<MoviePage/>} />
-            <Route path="/" element={<HomePage />} />
-            <Route path="*" element={<Navigate to="/" replace />} />
-            <Route path="/reviews/:id" element={<MovieReviewPage/>} />
-            <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
-          </Routes>
-        </MoviesContextProvider>
+        <AuthProvider>
+          <SiteHeader />
+          <MoviesContextProvider>
+            <Routes>
+              <Route path="/actors/:id" element={<ActorDetailsPage/>} />
+              <Route path="/actors/popular" element={<PopularActorsPage/>}/>
+              <Route path="/movies/favourites" element={<ProtectedRoute><FavouriteMoviesPage/></ProtectedRoute>}/>
+              <Route path="/movies/upcoming" element={<UpcomingMoviesPage/>}/>
+              <Route path="/movies/:id" element={<MoviePage/>} />
+              <Route path="/" element={<HomePage />} />
+              <Route path="*" element={<Navigate to="/" replace />} />
+              <Route path="/reviews/:id" element={<MovieReviewPage/>} />
+              <Route path="/reviews/form" element={<AddMovieReviewPage/>} />
+              <Route path="/login" element={<LoginPage/>} />
+              <Route path="/fantasymovie" element={<ProtectedRoute><FantasyMoviePage/></ProtectedRoute>} />
+            </Routes>
+          </MoviesContextProvider>
+        </AuthProvider>
       </BrowserRouter>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
