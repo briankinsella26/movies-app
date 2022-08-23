@@ -1,30 +1,33 @@
-import React from "react";
-import PageTemplate from '../components/templateMovieListPage'
-import { useQuery } from 'react-query'
-import Spinner from '../components/spinner'
-import {getMovies} from '../api/tmdb-api'
-import AddToFavouritesIcon from '../components/cardIcons/addToFavourites'
+import React, { useState } from "react";
+import { TextField, Container, Button, Box } from "@material-ui/core/";
 
-const HomePage = (props) => {
-  const {  data, error, isLoading, isError }  = useQuery('discover', getMovies)
-
-  if (isLoading) {
-    return <Spinner />
-  }
-
-  if (isError) {
-    return <h1>{error.message}</h1>
-  }  
-  const movies = data.results;
+const FantasyMoviePage = () => {
+  
+  const [title, setTitle] = useState();
+  const [synopsis, setSynopsis] = useState();
 
   return (
-    <PageTemplate
-      title='Discover Movies'
-      movies={movies}
-      action={(movie) => {
-        return <AddToFavouritesIcon movie={movie} />
-      }}
-    />
-  );
+    <>
+      <br/>
+      <br/>
+      <br/>
+      <form>
+        <Container maxWidth="xs">
+          <h1>My Fantasy Movie</h1>
+          <Box mb={1}>
+              <TextField variant="outlined" label="Title" fullWidth autoComplete="`Title" onChange={e => setTitle(e.target.value)}/>
+          </Box>
+          <Box mb={2}>
+              <TextField variant="outlined" label="Synopsis" fullWidth autoComplete="Synopsis" onChange={e => setSynopsis(e.target.value)}/>
+          </Box>
+          <Box mb={2}>
+              <TextField variant="outlined" label="Actors" fullWidth select onChange={e => setSynopsis(e.target.value)}/>
+          </Box>
+          <Button variant="contained" color="primary" fullWidth type="submit">Submit Movie</Button>
+        </Container>
+      </form>
+    </>
+    )
 };
-export default HomePage;
+
+export default FantasyMoviePage;
