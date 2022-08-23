@@ -94,7 +94,7 @@ TMDB server state cached by the app
 ![][c3]
 ![][c4]
 
-## Authentication (if relevant).
+## Authentication
 
 Authentication is basic and is in-memory. Protected routes are:
 
