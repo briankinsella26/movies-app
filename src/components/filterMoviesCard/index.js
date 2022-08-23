@@ -12,6 +12,7 @@ import Select from "@material-ui/core/Select";
 import { getGenres } from "../../api/tmdb-api";
 import { useQuery } from "react-query";
 import Spinner from '../spinner'
+import SortIcon from '@material-ui/icons/Sort';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -94,7 +95,7 @@ export default function FilterMoviesCard(props) {
     <Card className={classes.root} variant="outlined">
         <CardContent>
           <Typography variant="h5" component="h1">
-            <SearchIcon fontSize="large" />
+            <SortIcon fontSize="large" />
             Sort the movies.
           </Typography>
         </CardContent>

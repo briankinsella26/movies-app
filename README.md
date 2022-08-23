@@ -1,91 +1,121 @@
-# moviesapp Assignment
+
+# ICT Skills 2 Assignment.
+
+Name: Brian Kinsella
+
+## Overview.
+
+This is a react application that allows users to interact with the movies in the TMDB. This is an extensive database of Movie information, accessed via apis.
+
+e.g. 
++ Upcoming - A list of upcoming movies
++ Movie Details - Extensive hyperlinking with cast 
++ Actors - A list of actors, hyperlinking with "known for" movies
++ Fanmovie - A form to submit a fantasy movie (incomplete)
++ Login - A login form to allow access to protected routes
+
+## Setup requirements.
+
+In order to run locally, a react key is obtained from TMDB (see instructions https://developers.themoviedb.org/3/getting-started/introduction)
+The key needs to be stored to global variable (REACT_APP_TMDB_KEY) in .env file in project root.
+Node must be installed on the local machine
+From project root, run "npm install" to install project dependencies
+From project root, run "npm run start" to run development server.
+Application runs on localhost:3000 in the browser
+To run storybook, type run "npm run storybook"
+
+## App Design.
+
+The app is designed with the user in mind for the best possible UX
+The login page was built with material-ui components
+### Routing/Navigation.
+
+Routes supported
+
++ /actors/:id - detailed information on a specific actor.
++ /movies/upcoming - lists movies soon to be shown in cinemas.
++ /actors/popular - list of popular actors
++ /login - login page for authentication
++ /fantasymovie - for submitting a fantasy movie 
 
 
+### Views/Pages.
 
-## Getting started
+>Lists upcoming movies from the upcoming endpoint. Filtering on title and genre attributes is supported.
 
-To make it easy for you to get started with GitLab, here's a list of recommended next steps.
+![][u1]
 
-Already a pro? Just edit this README.md and make it your own. Want to make it easy? [Use the template at the bottom](#editing-this-readme)!
+![][u2]
 
-## Add your files
+>Lists actors from the popular actors endpoint. Filtering on name attribute is supported.
 
-- [ ] [Create](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#create-a-file) or [upload](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/repository/web_editor.html#upload-a-file) files
-- [ ] [Add files using the command line](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/gitlab-basics/add-file.html#add-a-file-using-the-command-line) or push an existing Git repository with the following command:
+![][a1]
 
-```
-cd existing_repo
-git remote add origin https://gitlab.com/oconnordiarmuid/moviesapp-ci-2021.git
-git branch -M main
-git push -uf origin main
-```
+![][a2]
 
-## Integrate with your tools
+>Shows detailed information on a specific actor and "known for" movies (hyperlinked)
 
-- [ ] [Set up project integrations](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/integrations/)
+![][a1]
+![][a2]
 
-## Collaborate with your team
+>Allows a user to login to access protected pages on the app
 
-- [ ] [Invite team members and collaborators](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/members/)
-- [ ] [Create a new merge request](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/merge_requests/creating_merge_requests.html)
-- [ ] [Automatically close issues from merge requests](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/issues/managing_issues.html#closing-issues-automatically)
-- [ ] [Automatically merge when pipeline succeeds](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/project/merge_requests/merge_when_pipeline_succeeds.html)
+![][login]
 
-## Test and Deploy
+>Lists the cast members in a movie (hyperlinked)
 
-Use the built-in continuous integration in GitLab.
+![][moviecast]
 
-- [ ] [Get started with GitLab CI/CD](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/ci/quick_start/index.html)
-- [ ] [Analyze your code for known vulnerabilities with Static Application Security Testing(SAST)](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/application_security/sast/)
-- [ ] [Deploy to Kubernetes, Amazon EC2, or Amazon ECS using Auto Deploy](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/topics/autodevops/requirements.html)
-- [ ] [Use pull-based deployments for improved Kubernetes management](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://docs.gitlab.com/ee/user/clusters/agent/)
+>Allows the user to submit a fantasy movie (incomplete)
 
-***
+![][fantasymovie]
 
-# Editing this README
 
-When you're ready to make this README your own, just edit this file and use the handy template below (or feel free to structure it however you want - this is just a starting point!).  Thank you to [makeareadme.com](https://gitlab.com/-/experiment/new_project_readme_content:66f52974c694a0a5196c76dfd303a95f?https://www.makeareadme.com/) for this template.
+### Component catalogue.
 
-## Suggestions for a good README
-Every project is different, so consider which of these sections apply to yours. The sections used in the template are suggestions for most open source projects. Also keep in mind that while a README can be too long and detailed, too long is better than too short. If you think your README is too long, consider utilizing another form of documentation rather than cutting out information.
+Components: 
++ Actor Card
++ Actor Lists
++ Filter Actors card
 
-## Name
-Choose a self-explaining name for your project.
+![][stories]
 
-## Description
-Let people know what your project can do specifically. Provide context and add a link to any reference visitors might be unfamiliar with. A list of Features or a Background subsection can also be added here. If there are alternatives to your project, this is a good place to list differentiating factors.
+## Caching.
 
-## Badges
-On some READMEs, you may see small images that convey metadata, such as whether or not all the tests are passing for the project. You can use Shields to add some to your README. Many services also have instructions for adding a badge.
+TMDB server state cached by the app
 
-## Visuals
-Depending on what you are making, it can be a good idea to include screenshots or even a video (you'll frequently see GIFs rather than actual videos). Tools like ttygif can help, but check out Asciinema for a more sophisticated method.
++ Upcoming movies
++ Cast
++ Popular Actors
++ Actor details
 
-## Installation
-Within a particular ecosystem, there may be a common way of installing things, such as using Yarn, NuGet, or Homebrew. However, consider the possibility that whoever is reading your README is a novice and would like more guidance. Listing specific steps helps remove ambiguity and gets people to using your project as quickly as possible. If it only runs in a specific context like a particular programming language version or operating system or has dependencies that have to be installed manually, also add a Requirements subsection.
+![][c1]
+![][c2]
+![][c3]
+![][c4]
 
-## Usage
-Use examples liberally, and show the expected output if you can. It's helpful to have inline the smallest example of usage that you can demonstrate, while providing links to more sophisticated examples if they are too long to reasonably include in the README.
+## Authentication (if relevant).
 
-## Support
-Tell people where they can go to for help. It can be any combination of an issue tracker, a chat room, an email address, etc.
+Authentication is basic and is in-memory. Protected routes are:
 
-## Roadmap
-If you have ideas for releases in the future, it is a good idea to list them in the README.
++ /fantasymovie
++ /movies/favourites
 
-## Contributing
-State if you are open to contributions and what your requirements are for accepting them.
+A user can authenticate via the login page at:
++ /login
 
-For people who want to make changes to your project, it's helpful to have some documentation on how to get started. Perhaps there is a script that they should run or some environment variables that they need to set. Make these steps explicit. These instructions could also be useful to your future self.
 
-You can also document commands to lint the code or run tests. These steps help to ensure high code quality and reduce the likelihood that the changes inadvertently break something. Having instructions for running tests is especially helpful if it requires external setup, such as starting a Selenium server for testing in a browser.
-
-## Authors and acknowledgment
-Show your appreciation to those who have contributed to the project.
-
-## License
-For open source projects, say how it is licensed.
-
-## Project status
-If you have run out of energy or time for your project, put a note at the top of the README saying that development has slowed down or stopped completely. Someone may choose to fork your project or volunteer to step in as a maintainer or owner, allowing your project to keep going. You can also make an explicit request for maintainers.
-
+[u1]: ./public/upcoming1.png
+[u2]: ./public/upcoming2.png
+[a1]: ./public/actors1.png
+[a2]: ./public/actors2.png
+[ab1]: ./public/actorsbio1.png
+[ab2]: ./public/actorsbio2.png
+[login]: ./public/login.png
+[moviecast]: ./public/moviecast.png
+[fantasymovie]: ./public/fantasymovie.png
+[c1]: ./public/cachingupcoming.png
+[c2]: ./public/cachingcast.png
+[c3]: ./public/cachingpopular.png
+[c4]: ./public/cachingbio.png
+[stories]: ./public/storybook.png
