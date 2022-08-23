@@ -1,7 +1,7 @@
 import React from "react";
 import Grid from "@material-ui/core/Grid";
 import { makeStyles } from "@material-ui/core/styles";
-import Header from "../headerList";
+import Header from "../header";
 
 const useStyles = makeStyles((theme) => ({
   root: {
